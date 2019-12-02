@@ -1,0 +1,26 @@
+{
+  "name": "sanctuaryworld",
+  "version": "0.0.1",
+  "description": "Dialo 4 Comunity WebSite",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aethiss/sanctuaryworld.git"
+  },
+  "keywords": [
+    "Diablo",
+    "4",
+    "comunity",
+    "fan",
+    "page"
+  ],
+  "author": "Aethiss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aethiss/sanctuaryworld/issues"
+  },
+  "homepage": "https://github.com/aethiss/sanctuaryworld#readme"
+}
