@@ -1,0 +1,33 @@
+html, body {
+  background-color: black;
+  color: aliceblue;
+}
+
+.wrapper {
+  padding: 5px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  /*flex-basis: 100%;*/
+  flex: 1;
+  border: 1px solid darkred;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* for testing */
+.blue-column {
+  background-color: #007bff;
+}
+
+.green-column {
+  background-color: #66bb6a;
+}
+

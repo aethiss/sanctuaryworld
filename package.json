@@ -4,7 +4,11 @@
   "description": "Dialo 4 Comunity WebSite",
   "main": "./src/index.js",
   "scripts": {
-    "test": "test"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "server": "node server/server.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -30,16 +34,16 @@
     "escape-quotes": "^1.0.2",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "mysql": "^2.17.1",
     "next": "^9.0.7",
     "node-fetch": "^2.6.0",
+    "passport": "^0.4.0",
+    "passport-bnet": "^2.0.0",
     "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-hook-form": "^3.26.2",
     "react-redux": "^7.1.1",
-    "react-responsive-modal": "^4.0.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "sweetalert2": "^9.1.6",
