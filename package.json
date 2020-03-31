@@ -34,7 +34,7 @@
     "escape-quotes": "^1.0.2",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "next": "^9.0.7",
+    "next": "^9.3.2",
     "node-fetch": "^2.6.0",
     "passport": "^0.4.0",
     "passport-bnet": "^2.0.0",
