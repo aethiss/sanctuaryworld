@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonDescription Render [ButtonDescription] : Render anchor 1`] = `
+<a
+  href="/"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+>
+  <button
+    className="makeStyles-button-1"
+  >
+    <span
+      className="makeStyles-buttonText-2"
+    >
+      test
+    </span>
+  </button>
+</a>
+`;
+
+exports[`ButtonDescription Render [ButtonDescription] : Render default 1`] = `
+<button
+  className="makeStyles-button-1"
+>
+  <span
+    className="makeStyles-buttonText-2"
+  />
+</button>
+`;

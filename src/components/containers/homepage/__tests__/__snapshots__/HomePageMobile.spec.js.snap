@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DiabloButton Component Render [HomePageMobile] Default render 1`] = `
+<div
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundImage": "url(\\"/images/background/homepage-background-mobile.jpg\\")",
+      "backgroundRepeat": "no-repeat",
+      "backgroundSize": "contain",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": "100vh",
+      "justifyContent": "flex-end",
+      "padding": "5%",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "marginBottom": "80%",
+      }
+    }
+  >
+    <a
+      href="/account"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <button
+        className="makeStyles-base-1"
+        onClick={[Function]}
+      >
+        Connect
+      </button>
+    </a>
+  </div>
+</div>
+`;

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Clans Render [Clans] : Render default 1`] = `
+<div
+  className="makeStyles-bodyWrapper-4"
+>
+  <span
+    className="makeStyles-wrapperTop-2"
+  />
+  <div
+    className="makeStyles-wrapper-1"
+  >
+    <button
+      className="makeStyles-button-5"
+      onClick={[Function]}
+    >
+      <span
+        className="makeStyles-buttonText-6"
+      >
+        Register Your Clan
+      </span>
+    </button>
+  </div>
+  <span
+    className="makeStyles-wrapperBottom-3"
+  />
+</div>
+`;

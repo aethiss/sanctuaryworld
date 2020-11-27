@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DiabloResponsiveButton Render [DiabloResponsiveButton] : Render default 1`] = `
+<button
+  className="makeStyles-button-1"
+>
+  <span
+    className="makeStyles-buttonLeft-3"
+  />
+  <span
+    className="makeStyles-buttonMid-2"
+  >
+    <span
+      className="makeStyles-buttonText-5"
+    />
+  </span>
+  <span
+    className="makeStyles-buttonRight-4"
+  />
+</button>
+`;

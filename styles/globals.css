@@ -1,7 +1,10 @@
 html,
-body {
+body, #__next {
+  height: 100%;
   padding: 0;
   margin: 0;
+  background-color: black;
+  color: #f8e9d4;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -14,3 +17,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@import url(//db.onlinewebfonts.com/c/ce7ee1905f939d4e0f4cfcb3470c4d4e?family=Old+Fenris);
+@font-face {font-family: "Old Fenris"; src: url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.eot");src: url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.woff") format("woff"), url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.svg#Old Fenris") format("svg"); }
+

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Proposal Render [Proposal] : Render default 1`] = `
+<div
+  className="makeStyles-bodyWrapper-1"
+>
+  <div>
+    Proposal !
+  </div>
+</div>
+`;

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage Component Render [HomePage] Default render desktop 1`] = `
+<div
+  style={
+    Object {
+      "backgroundImage": "url(\\"/images/background/desktop-home-background-ultrawide.jpg\\")",
+      "backgroundRepeat": "no-repeat",
+      "backgroundSize": "contain",
+      "height": "100%",
+      "position": "relative",
+    }
+  }
+>
+  <video
+    autoPlay={true}
+    muted={true}
+    onEnded={[Function]}
+    width="100%"
+  >
+    <source
+      src="https://d3a5h34gwy5glx.cloudfront.net/assets/media/agegate-background-ultrawide-intro.9e333f400749237bc0aa377cb3664c90.mp4"
+    />
+  </video>
+  <div
+    style={
+      Object {
+        "left": "50%",
+        "margin": 0,
+        "position": "absolute",
+        "textAlign": "center",
+        "top": "70%",
+        "transform": "translate(-50%, -50%)",
+        "zIndex": 1,
+      }
+    }
+  >
+    <a
+      href="/api/connect/bnet"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <button
+        className="makeStyles-button-1"
+      >
+        <span
+          className="makeStyles-buttonLeft-3"
+        />
+        <span
+          className="makeStyles-buttonMid-2"
+        >
+          <span
+            className="makeStyles-buttonText-5"
+          >
+            Connect
+          </span>
+        </span>
+        <span
+          className="makeStyles-buttonRight-4"
+        />
+      </button>
+    </a>
+    <p>
+      Secure Login with Blizzard Account
+    </p>
+  </div>
+</div>
+`;

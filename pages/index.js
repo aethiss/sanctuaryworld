@@ -5,20 +5,18 @@ import React, { Component } from 'react'
 import Head from 'next/head'
 
 // Component
-
-// Styles
-import styles from '../styles/Home.module.css'
+import HomePage from '../src/components/containers/homepage/HomePage'
 
 class Home extends Component {
   render() {
     return (
-      <div className={styles.container}>
+      <>
         <Head>
-          <title>SRR Next App</title>
-          <link rel='icon' href='/favicon.ico' />
+          <title>SanctuaryWorld Diablo 4 Player Comunity</title>
+          <link rel='icon' href='/d4favicon.png' />
         </Head>
-        <div>INIT</div>
-      </div>
+        <HomePage />
+      </>
     )
   }
 }

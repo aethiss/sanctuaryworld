@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Account Render [Account] : Render default 1`] = `
+<div
+  style={
+    Object {
+      "backgroundImage": "url(\\"/images/background/d4-background-mobile.jpg\\")",
+      "height": "100%",
+      "textAlign": "center",
+    }
+  }
+>
+  <p>
+    Account
+  </p>
+  <div />
+  <div>
+    <p>
+      Secure Connect with Blizzard Account
+    </p>
+    <a
+      href="/api/connect/bnet"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <button
+        className="makeStyles-base-1"
+        onClick={[Function]}
+      >
+        Connect Account
+      </button>
+    </a>
+  </div>
+</div>
+`;

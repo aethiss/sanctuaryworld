@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react'
 import initializeStore from './reduxStore'
+import { hydrates } from '../../server/middleware/middleware'
 
 const isServer = typeof window === 'undefined'
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__'
@@ -21,9 +22,15 @@ function getOrCreateStore(initialState = {}) {
 export default (App) => {
   return class AppWithRedux extends React.Component {
     static async getInitialProps(appContext) {
+      const { ctx } = appContext
       // Get or Create the store with `undefined` as initialState
       // This allows you to set a custom default initialState
       let reduxStore = getOrCreateStore()
+
+      // We are Server Side, if yes Hydrate the Redux-Store ?
+      if (ctx?.req) {
+        await hydrates(ctx.req, reduxStore)
+      }
 
       // Provide the store to getInitialProps of pages
       appContext.ctx.reduxStore = reduxStore

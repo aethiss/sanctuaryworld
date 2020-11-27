@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Classes Render [Classes]: Default Render Classes 1`] = `
+<div
+  style={
+    Object {
+      "position": "relative",
+    }
+  }
+>
+  <video
+    autoPlay={true}
+    loop={true}
+    muted={true}
+    width="100%"
+  >
+    <source
+      src="https://d3a5h34gwy5glx.cloudfront.net/assets/media/classes-bg-loop-ultra.40931d6dfc85ffaca3d9010051b0d648.mp4"
+    />
+  </video>
+  <div
+    style={
+      Object {
+        "left": "50%",
+        "margin": 0,
+        "position": "absolute",
+        "textAlign": "center",
+        "top": "20%",
+        "transform": "translate(-50%, -50%)",
+        "zIndex": 1,
+      }
+    }
+  >
+    <div
+      aria-label="outlined primary button group"
+      className="MuiButtonGroup-root"
+      role="group"
+    >
+      <a
+        href="/class/barbarian"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        <button
+          className="makeStyles-base-1"
+          onClick={[Function]}
+        >
+          Barbarian
+        </button>
+      </a>
+      <a
+        href="/class/sorcerer"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        <button
+          className="makeStyles-base-2"
+          onClick={[Function]}
+        >
+          Sorceress
+        </button>
+      </a>
+      <a
+        href="/class/druid"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        <button
+          className="makeStyles-base-3"
+          onClick={[Function]}
+        >
+          Druid
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+`;

@@ -2,9 +2,11 @@ import { configureStore } from '@reduxjs/toolkit'
 
 // Actions/reducers
 import deviceReducer from './reducers/deviceReducer'
+import userReducer from './reducers/userReducer'
 
 const rootReducer = {
   [deviceReducer.name]: deviceReducer.reducer,
+  [userReducer.name]: userReducer.reducer,
 }
 
 const initializeStore = (initialState) => {
