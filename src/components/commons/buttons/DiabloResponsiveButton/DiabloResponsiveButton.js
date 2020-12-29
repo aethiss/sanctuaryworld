@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
 
 // Styles
-const useStyles = makeStyles(() => ({
+const useStyles = (minWidth) => makeStyles(() => ({
   button: {
     display: 'inline-block',
     fontSize: '16px',
@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
     background: 'url("/images/buttons/button-game-sprite.png") repeat-x 0 0',
     color: '#f3aa55',
     display: 'block',
+    width: minWidth ? `${minWidth}px` : 'auto',
     fontFamily: '"Exocet Blizzard Light", "Palatino Linotype", "Times", serif',
     padding: '0 42px',
     position: 'relative',
@@ -71,8 +72,8 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const DiabloResponsiveButton = ({ text, anchorLink, action }) => {
-  const classes = useStyles()
+const DiabloResponsiveButton = ({ text, anchorLink, action, minWidth }) => {
+  const classes = useStyles(minWidth)()
 
   const renderButton = () => (
     <button
@@ -104,6 +105,7 @@ DiabloResponsiveButton.propTypes = {
   text: PropTypes.string,
   anchorLink: PropTypes.string,
   action: PropTypes.func,
+  minWidth: PropTypes.number
 }
 
 export default DiabloResponsiveButton

@@ -1,16 +1,16 @@
 import React from 'react'
 
 // Next
-import Link from 'next/link'
+// import Link from 'next/link'
+
+// Test Container
+import DiabloContainerResponsive from '../src/components/commons/wrapper/DiabloContainerResponsive'
 
 const Test = () => {
   return (
-    <div>
-      <p>This is a Client Test page</p>
-      <Link href="/">
-        <a>Home</a>
-      </Link>
-    </div>
+    <DiabloContainerResponsive>
+      <p>Ciao !</p>
+    </DiabloContainerResponsive>
   )
 }
 

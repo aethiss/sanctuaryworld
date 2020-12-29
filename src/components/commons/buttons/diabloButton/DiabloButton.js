@@ -20,7 +20,7 @@ const initStyles = ({ isDisabled, enableOnOver }) => {
         backgroundRepeat: 'no-repeat',
       } :
       {
-        background: 'url("images/buttons/diablo-buttons-base.png")',
+        background: 'url("/images/buttons/diablo-buttons-base.png")',
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
       }

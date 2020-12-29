@@ -21,6 +21,7 @@ import ForumIcon from '@material-ui/icons/Forum'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import IconButton from '@material-ui/core/IconButton'
+import FireplaceIcon from '@material-ui/icons/Fireplace'
 
 // Styles
 const styles = {
@@ -41,6 +42,8 @@ const styles = {
 
 const MenuIcon = (iconName) => {
   switch (iconName) {
+    case 'Tavern':
+      return <FireplaceIcon />
     case 'Classes':
       return <AdjustIcon />
     case 'Clans':
@@ -60,13 +63,14 @@ const MenuIcon = (iconName) => {
 
 const primaryMenu = [
   { name: 'Home', link: '/', icon: () => MenuIcon('Home') },
+  { name: 'Tavern', link: '/tavern/lounge', icon: () => MenuIcon('Tavern') },
   { name: 'Classes', link: '/classes', icon: () => MenuIcon('Classes') },
   { name: 'Clans', link: '/clans', icon: () => MenuIcon('Clans') },
-  { name: 'Proposal', link: '/proposal', icon: () => MenuIcon('Proposal') },
+  { name: 'Proposal', link: '/proposals', icon: () => MenuIcon('Proposal') },
 ]
 
 const secondaryMenu = [
-  { name: 'Account', link: '/test', icon: () => MenuIcon('Account') },
+  { name: 'Account', link: '/account', icon: () => MenuIcon('Account') },
   { name: 'Forum', link: '/test', icon: () => MenuIcon('Forum') },
   { name: 'Log Out', link: '/test', icon: () => MenuIcon('logout') },
 ]

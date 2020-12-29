@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Proposals Render [Proposals] : Render default 1`] = `
+<div
+  className="makeStyles-bodyWrapper-4"
+>
+  <span
+    className="makeStyles-wrapperTop-2"
+  />
+  <div
+    className="makeStyles-wrapper-1"
+  >
+    <h3>
+      Total Proposals : 
+      2
+    </h3>
+    <a
+      href="/proposal/world"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <button
+        className="makeStyles-button-5"
+      >
+        <span
+          className="makeStyles-buttonText-6"
+        >
+          World & Story
+        </span>
+      </button>
+    </a>
+    <a
+      href="/proposal/pve"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <button
+        className="makeStyles-button-5"
+      >
+        <span
+          className="makeStyles-buttonText-6"
+        >
+          Classes & PVE
+        </span>
+      </button>
+    </a>
+    <a
+      href="/proposal/trading"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <button
+        className="makeStyles-button-5"
+      >
+        <span
+          className="makeStyles-buttonText-6"
+        >
+          Trading & Crafting
+        </span>
+      </button>
+    </a>
+    <a
+      href="/proposal/pvp"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <button
+        className="makeStyles-button-5"
+      >
+        <span
+          className="makeStyles-buttonText-6"
+        >
+          PVP & Combat
+        </span>
+      </button>
+    </a>
+  </div>
+  <span
+    className="makeStyles-wrapperBottom-3"
+  />
+</div>
+`;

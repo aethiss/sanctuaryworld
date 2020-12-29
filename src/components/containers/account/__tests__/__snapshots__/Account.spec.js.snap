@@ -1,35 +1,139 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Account Render [Account] : Render connected and authenticated 1`] = `
+<div
+  className="makeStyles-bodyWrapper-1"
+>
+  <div
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <span>
+      <p>
+        Connected as 
+        pippi#1123
+         
+      </p>
+      <div>
+        <p>
+          User Authenticated
+        </p>
+      </div>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Account Render [Account] : Render connected not authenticated 1`] = `
+<div
+  className="makeStyles-bodyWrapper-1"
+>
+  <div
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <span>
+      <p>
+        Connected as 
+        pippi#1123
+         
+      </p>
+      <div>
+        <div>
+          <p>
+            Sync your Blizzard Account with SanctuaryWorld !
+          </p>
+          <span>
+            <a
+              href="/login"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <button
+                className="makeStyles-button-2"
+              >
+                <span
+                  className="makeStyles-buttonText-3"
+                >
+                  Sign-In
+                </span>
+              </button>
+            </a>
+          </span>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Account Render [Account] : Render default 1`] = `
 <div
-  style={
-    Object {
-      "backgroundImage": "url(\\"/images/background/d4-background-mobile.jpg\\")",
-      "height": "100%",
-      "textAlign": "center",
-    }
-  }
+  className="makeStyles-bodyWrapper-1"
 >
-  <p>
-    Account
-  </p>
-  <div />
-  <div>
-    <p>
-      Secure Connect with Blizzard Account
-    </p>
-    <a
-      href="/api/connect/bnet"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-    >
-      <button
-        className="makeStyles-base-1"
-        onClick={[Function]}
-      >
-        Connect Account
-      </button>
-    </a>
+  <div
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <span>
+      <div>
+        <p>
+          Secure Connect with Blizzard Account
+        </p>
+        <a
+          href="/api/connect/bnet"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <button
+            className="makeStyles-button-2"
+          >
+            <span
+              className="makeStyles-buttonLeft-4"
+            />
+            <span
+              className="makeStyles-buttonMid-3"
+            >
+              <span
+                className="makeStyles-buttonText-6"
+              >
+                Connect
+              </span>
+            </span>
+            <span
+              className="makeStyles-buttonRight-5"
+            />
+          </button>
+        </a>
+        <p>
+          Or 
+          <a
+            href="/login"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            style={
+              Object {
+                "textDecoration": "underline",
+              }
+            }
+          >
+            Login
+          </a>
+           with Sanctuary Account
+        </p>
+      </div>
+       
+      <br />
+    </span>
   </div>
 </div>
 `;
