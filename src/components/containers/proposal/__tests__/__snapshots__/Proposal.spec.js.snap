@@ -2,10 +2,31 @@
 
 exports[`Proposal Render [Proposal] : Render default 1`] = `
 <div
-  className="makeStyles-bodyWrapper-1"
+  className="makeStyles-bodyWrapper-2"
 >
-  <div>
-    Proposal !
+  <div
+    className="makeStyles-titleContainer-1"
+  >
+    <button
+      className="makeStyles-button-3"
+      onClick={[Function]}
+    >
+      <span
+        className="makeStyles-buttonLeft-5"
+      />
+      <span
+        className="makeStyles-buttonMid-4"
+      >
+        <span
+          className="makeStyles-buttonText-7"
+        >
+          New world Proposal
+        </span>
+      </span>
+      <span
+        className="makeStyles-buttonRight-6"
+      />
+    </button>
   </div>
 </div>
 `;

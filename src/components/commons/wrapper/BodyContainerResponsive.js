@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 
 // Styles
-const useStyles = makeStyles(() => ({
+const useStyles = (background, contentOnCenter) => makeStyles(() => ({
   bodyWrapper: {
     width: '95%',
     minHeight: '88vh',
@@ -14,17 +14,17 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: contentOnCenter? 'center' : 'flex-start',
     margin: 'auto',
-    backgroundImage: 'url("/images/background/bg-content-top.jpg")',
-    backgroundSize: 'contain',
+    backgroundImage: background ? `url("${background}")` : 'url("/images/background/bg-content-top.jpg")',
+    backgroundSize: background ? 'cover' : 'contain',
     backgroundRepeat: 'no-repeat',
-    backgroundColor: '#12110F'
+    backgroundColor: '#12110F',
   },
 }))
 
-const BodyContainer = ({ children }) => {
-  const classes = useStyles()
+const BodyContainer = ({ children, background, contentOnCenter }) => {
+  const classes = useStyles(background, contentOnCenter)()
   return (
     <div className={classes.bodyWrapper}>
       {children || <div>Empty Content</div>}
@@ -34,6 +34,8 @@ const BodyContainer = ({ children }) => {
 
 BodyContainer.propTypes = {
   children: PropTypes.node,
+  background: PropTypes.string,
+  contentOnCenter: PropTypes.bool,
 }
 
 export default BodyContainer

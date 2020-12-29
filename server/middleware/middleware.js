@@ -1,6 +1,6 @@
-import { setDeviceConfig } from '../../src/redux/handlers/deviceActions'
-
 import userReducer from '../../src/redux/reducers/userReducer'
+
+import { setDeviceConfig } from '../../src/redux/handlers/deviceActions'
 
 /* This Function update the Redux-Store foreach Server Side Request! */
 export const hydrates = async (req, store) => {

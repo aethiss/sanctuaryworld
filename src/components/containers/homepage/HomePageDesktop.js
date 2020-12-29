@@ -48,8 +48,7 @@ const HomePageDesktop = ({ battletag }) => {
 
   const renderConnect = () => (
     <>
-      <DiabloResponsiveButton text='Connect' anchorLink='/api/connect/bnet' />
-      <p>Secure Login with Blizzard Account</p>
+      <DiabloResponsiveButton text='Connect' anchorLink='/account' />
     </>
   )
 

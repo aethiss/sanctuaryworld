@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Render [Login] : Render default 1`] = `
+<div
+  className="makeStyles-bodyWrapper-1"
+  style={
+    Object {
+      "backgroundImage": "/images/background/act1-bg.jpg",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <span />
+    <form
+      action="#"
+      onReset={[Function]}
+      onSubmit={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "column",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "column",
+            "marginTop": "30px",
+            "width": "95%",
+          }
+        }
+      >
+        <label
+          htmlFor="email"
+          style={
+            Object {
+              "fontSize": "18px",
+              "paddingBottom": "7px",
+            }
+          }
+        >
+          Sanctuary Account Email
+        </label>
+        <div
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <i
+            className="fa fa-at"
+            style={
+              Object {
+                "justifySelf": "center",
+              }
+            }
+          />
+          <input
+            name="email"
+            onBlur={[Function]}
+            onChange={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#131210",
+                "border": "2px solid #ccc",
+                "boxShadow": "0px 0px 9px 3px #ccc",
+                "color": "#FFF",
+                "height": "35px",
+                "opacity": "0.7",
+                "width": "275px",
+              }
+            }
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "column",
+            "marginTop": "30px",
+            "width": "95%",
+          }
+        }
+      >
+        <label
+          htmlFor="password"
+          style={
+            Object {
+              "fontSize": "18px",
+              "paddingBottom": "7px",
+            }
+          }
+        >
+          Password
+        </label>
+        <div
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <i
+            className="fa fa-key"
+            style={
+              Object {
+                "justifySelf": "center",
+              }
+            }
+          />
+          <input
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#131210",
+                "border": "2px solid #ccc",
+                "boxShadow": "0px 0px 9px 3px #ccc",
+                "color": "#FFF",
+                "height": "35px",
+                "opacity": "0.7",
+                "width": "275px",
+              }
+            }
+            type="password"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "marginTop": "35px",
+          }
+        }
+      >
+        <button
+          className="makeStyles-button-2"
+        >
+          <span
+            className="makeStyles-buttonLeft-4"
+          />
+          <span
+            className="makeStyles-buttonMid-3"
+          >
+            <span
+              className="makeStyles-buttonText-6"
+            >
+              Sign In
+            </span>
+          </span>
+          <span
+            className="makeStyles-buttonRight-5"
+          />
+        </button>
+      </div>
+    </form>
+    <div
+      style={
+        Object {
+          "marginTop": "10px",
+        }
+      }
+    >
+      or 
+      <br />
+      <a
+        href="/signin"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        register
+      </a>
+    </div>
+  </div>
+</div>
+`;

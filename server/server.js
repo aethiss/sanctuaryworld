@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-const express = require('express')
+const express = require('express')()
+const server = require('http').Server(express)
 const next = require('next')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -9,6 +10,9 @@ const passport = require('passport')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
+
+// Custom WebSockets
+const websockets = require('./webSockets')
 
 // Use the BnetStrategy within Passport.
 const BnetStrategy = require('passport-bnet').Strategy
@@ -34,11 +38,11 @@ passport.use(
 // Server modules
 
 app.prepare().then(() => {
-  const server = express()
+  // const server = express()
 
   // Accept all requests
   // Add headers
-  server.use((req, res, next) => {
+  express.use((req, res, next) => {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*')
 
@@ -64,15 +68,15 @@ app.prepare().then(() => {
 
   // configure server to use bodyParser()
   // this will let us get the data from a POST
-  server.use(bodyParser.json())
-  server.use(bodyParser.urlencoded({ extended: true }))
+  express.use(bodyParser.json())
+  express.use(bodyParser.urlencoded({ extended: true }))
 
   // initialize cookie-parser to allow us access the cookies stored in the browser.
-  server.use(cookieParser())
+  express.use(cookieParser())
 
-  server.set('trust proxy', 1) // trust first proxy
+  express.set('trust proxy', 1) // trust first proxy
 
-  server.use(
+  express.use(
     session({
       secret: 'keyboardcat',
       resave: false,
@@ -81,8 +85,8 @@ app.prepare().then(() => {
       rolling: true,
     })
   )
-  server.use(passport.initialize())
-  server.use(passport.session())
+  express.use(passport.initialize())
+  express.use(passport.session())
 
   passport.serializeUser(function(user, done) {
     done(null, user)
@@ -94,22 +98,27 @@ app.prepare().then(() => {
   })
 
   // BNET AUTH ROUTING
-  server.get('/api/connect/bnet', passport.authenticate('bnet', { session: false }))
+  express.get('/api/connect/bnet', passport.authenticate('bnet', { session: false }))
 
-  server.get(
+  express.get(
     '/api/connect/callback',
     passport.authenticate('bnet', { failureRedirect: '/error', session: false }),
     (req, res) => {
       const days = 3 * 24 * 60 * 60 * 1000
-      res.cookie('user', JSON.stringify(req.user), { maxAge: days, httpOnly: true })
+      const auth = req.user?.auth || false
+      res.cookie('user', JSON.stringify({ ...req.user, auth }), { maxAge: days, httpOnly: true })
       res.redirect('/')
     }
   )
 
   // ROUTING
-  server.all('*', (req, res) => {
+  express.all('*', (req, res) => {
     return handle(req, res)
   })
+
+  // Socket.io
+  const io = require('socket.io')(server)
+  websockets(io)
 
   const port = dev ? 3000 : 4000
   server.listen(port, err => {

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 // Styles
 import Wrapper from '../src/components/commons/wrapper/Wrapper'
 import '../styles/globals.css'
+import "../node_modules/react-quill/dist/quill.snow.css"
 
 class MyApp extends App {
   render() {

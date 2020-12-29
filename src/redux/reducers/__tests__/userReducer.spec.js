@@ -3,7 +3,14 @@ let store = initializeStore()
 
 const initialState = {}
 
-const mockUser = { sub: "104883907", id: 104883907, battletag: "Aethiss#2441", provider: "bnet", token: "EUmAe6TQG4FkLY8fmN2lBbkpVaEeWj9X1d" }
+const mockUser = {
+  sub: "23456543",
+  id: 23456543,
+  battletag: "Aethiss#1111",
+  provider: "bnet",
+  token: "EUmAe6TQG4FkLY8fmN2lBbkpVaEeWj9X1d",
+  auth: false,
+}
 
 // Actions/Reducers
 import userReducer from '../userReducer'
@@ -23,5 +30,13 @@ describe('user reducer', () => {
     store.dispatch(userReducer.actions.setUser(mockUser))
     store.dispatch(userReducer.actions.logOutUser())
     expect(store.getState().user).toStrictEqual({})
+  })
+  it('[user] : Should update jwt token', () => {
+    store.dispatch(userReducer.actions.setUser(mockUser))
+    store.dispatch(userReducer.actions.setAuth({ auth: 'xcvbxzzzxx' }))
+    expect(store.getState().user).toStrictEqual({
+      ...mockUser,
+      auth: 'xcvbxzzzxx',
+    })
   })
 })

@@ -1,44 +1,82 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // Next
 import Image from 'next/image'
+import Link from 'next/link'
 
 // Components
-import DiabloButton from '../../commons/buttons/diabloButton/DiabloButton'
+import BodyContainer from '../../commons/wrapper/BodyContainerResponsive'
+import DiabloResponsiveButton from '../../commons/buttons/DiabloResponsiveButton/DiabloResponsiveButton'
+import ButtonDescription from '../../commons/buttons/buttonDescription/ButtonDescription'
 
 // Style
 const styles = {
   container: {
     textAlign: 'center',
-    backgroundImage: 'url("/images/background/d4-background-mobile.jpg")',
-    height: '100%'
+  },
+  link: {
+    textDecoration: 'underline',
   }
 }
 
-const AccountPage = () => {
+const AccountPage = ({ user }) => {
+
+  const notAuthenticatedUser = () => (
+    <div>
+      <p>Sync your Blizzard Account with SanctuaryWorld !</p>
+      <span>
+        <ButtonDescription anchorLink='/login' text='Sign-In' />
+      </span>
+    </div>
+)
 
   const blizzardConnect = () => {
     return (
       <div>
         <p>Secure Connect with Blizzard Account</p>
-        <DiabloButton text="Connect Account" anchorLink='/api/connect/bnet' />
+        <DiabloResponsiveButton text='Connect' anchorLink='/api/connect/bnet' />
+        <p>Or <Link href='/login'><a style={styles.link}>Login</a></Link> with Sanctuary Account</p>
+      </div>
+    )
+  }
+
+  const sanctuaryAuth = (user) => {
+    if (!user.battletag) return null
+    return (
+      <div>
+        { user.auth ? <p>User Authenticated</p> : notAuthenticatedUser() }
       </div>
     )
   }
 
   return (
-    <div style={styles.container}>
-      <p>Account</p>
-      <div>
+    <BodyContainer>
+      <div style={styles.container}>
         <Image
           src="/images/background/d4_logo.png"
           alt="diablo 4 logo"
-          unsized
+          width={370}
+          height={200}
         />
+        { user.battletag ?
+          <span>
+            <p>Connected as {user.battletag} </p>
+            { sanctuaryAuth(user) }
+          </span> :
+          <span>{ blizzardConnect() } <br/>{sanctuaryAuth(user)}</span>
+        }
       </div>
-      {blizzardConnect()}
-    </div>
+    </BodyContainer>
   )
+}
+
+AccountPage.propTypes = {
+  user: PropTypes.object,
+}
+
+AccountPage.defaultProps = {
+  user: {},
 }
 
 export default AccountPage

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuillCMS Render [QuillCMS] : Render default 1`] = `
+Array [
+  <div
+    style={
+      Object {
+        "backgroundColor": "#FFF",
+        "color": "black",
+        "display": "block",
+        "minHeight": "50vh",
+        "width": "90%",
+      }
+    }
+  />,
+  <div />,
+  <div>
+    <button
+      className="makeStyles-base-1"
+      onClick={[Function]}
+    >
+      Preview
+    </button>
+  </div>,
+]
+`;
