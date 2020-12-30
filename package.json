@@ -12,6 +12,7 @@
     "build": "next build",
     "start": "next start",
     "server": "node server/server.js",
+    "prod": "NODE_ENV=production node ./server/server.js",
     "test": "jest"
   },
   "dependencies": {
