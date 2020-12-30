@@ -1,4 +1,4 @@
-import * as Yup from 'Yup'
+import * as Yup from 'yup'
 
 let proposalSchema = Yup.object().shape({
   creator: Yup.string().required(),
