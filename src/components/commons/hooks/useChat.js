@@ -3,7 +3,8 @@ import socketIOClient from "socket.io-client"
 
 const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage'
 const USER_CONNECTED_EVENT = 'newUserConnected'
-const SOCKET_SERVER_URL = "http://localhost:3000"
+const SOCKET_SERVER_URL = "http://www.sanctuaryworld.org:4001"
+// const SOCKET_SERVER_URL = "http://localhost:3000"
 
 const useChat = (roomId, battletag = 'unknown') => {
   const [messages, setMessages] = useState([])
