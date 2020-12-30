@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+require('dotenv').config()
+
 const express = require('express')()
 const server = require('http').Server(express)
 const next = require('next')
@@ -10,7 +12,7 @@ const passport = require('passport')
 const dev = process.env.NODE_ENV !== 'production'
 console.log('dev', dev)
 console.log(process.env.NODE_ENV)
-console.log(process.env)
+
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
