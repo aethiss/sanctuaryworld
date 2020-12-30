@@ -120,7 +120,7 @@ app.prepare().then(() => {
   const io = require('socket.io')(server)
   websockets(io)
 
-  const port = dev ? 3000 : 4000
+  const port = dev ? 3000 : 4001
   server.listen(port, err => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
