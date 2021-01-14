@@ -3,7 +3,7 @@ import axios from 'axios'
 import { pathOr } from 'ramda'
 
 export const API = axios.create({
-  baseURL: `http://${process.env.NEXT_PUBLIC_API_BASE_URL}/`,
+  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}/`,
   timeout: 5000,
   headers: {
     accept: 'application/json',
