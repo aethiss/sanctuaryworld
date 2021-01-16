@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // Components
@@ -29,6 +29,7 @@ const styles = {
 
 
 const HomePageDesktop = ({ battletag }) => {
+  const [clientReady, setClientReady] = useState(false)
   const [videoEnd, setVideoEnd] = useState(false)
   const vidRef = useRef(null)
 
@@ -46,6 +47,10 @@ const HomePageDesktop = ({ battletag }) => {
     }
   }
 
+  useEffect(() => {
+    setClientReady(true)
+  }, [])
+
   const renderConnect = () => (
     <>
       <DiabloResponsiveButton text='Connect' anchorLink='/account' />
@@ -54,9 +59,11 @@ const HomePageDesktop = ({ battletag }) => {
 
   return (
     <div style={styles.homeContainer}>
-      <video key={videoEnd ? loopVideo : introVideo} autoPlay muted width="100%" onEnded={setNextVideo} ref={vidRef}>
-        <source src={videoEnd ? loopVideo : introVideo} />
-      </video>
+      { clientReady &&
+        <video key={videoEnd ? loopVideo : introVideo} autoPlay muted width="100%" onEnded={setNextVideo} ref={vidRef}>
+          <source src={videoEnd ? loopVideo : introVideo} />
+        </video>
+      }
       <div style={styles.buttonContainer}>
         { battletag ? (<p>Connected as {battletag}</p>) : renderConnect() }
       </div>

@@ -4,15 +4,12 @@ require('dotenv').config()
 const express = require('express')()
 const server = require('http').Server(express)
 const next = require('next')
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const session = require('express-session')
+// const session = require('express-session')
 const passport = require('passport')
 
 const dev = process.env.NODE_ENV !== 'production'
-console.log('dev', dev)
-console.log(process.env)
-
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
@@ -47,49 +44,49 @@ app.prepare().then(() => {
 
   // Accept all requests
   // Add headers
-  express.use((req, res, next) => {
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*')
-
-    // Request methods you wish to allow
-    res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-    )
-
-    // Request headers you wish to allow
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-Requested-With,content-type'
-    )
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true)
-
-    // Pass to next layer of middleware
-    next()
-  })
+  // express.use((req, res, next) => {
+  //   // Website you wish to allow to connect
+  //   res.setHeader('Access-Control-Allow-Origin', '*')
+  //
+  //   // Request methods you wish to allow
+  //   res.setHeader(
+  //     'Access-Control-Allow-Methods',
+  //     'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+  //   )
+  //
+  //   // Request headers you wish to allow
+  //   res.setHeader(
+  //     'Access-Control-Allow-Headers',
+  //     'X-Requested-With,content-type'
+  //   )
+  //
+  //   // Set to true if you need the website to include cookies in the requests sent
+  //   // to the API (e.g. in case you use sessions)
+  //   res.setHeader('Access-Control-Allow-Credentials', true)
+  //
+  //   // Pass to next layer of middleware
+  //   next()
+  // })
 
   // configure server to use bodyParser()
   // this will let us get the data from a POST
-  express.use(bodyParser.json())
-  express.use(bodyParser.urlencoded({ extended: true }))
+  // express.use(bodyParser.json())
+  // express.use(bodyParser.urlencoded({ extended: true }))
 
   // initialize cookie-parser to allow us access the cookies stored in the browser.
   express.use(cookieParser())
-
   express.set('trust proxy', 1) // trust first proxy
 
-  express.use(
-    session({
-      secret: 'keyboardcat',
-      resave: false,
-      saveUninitialized: true,
-      cookie: { path: '/', httpOnly: true, maxAge: 30 * 600000 },
-      rolling: true,
-    })
-  )
+  // express.use(
+  //   session({
+  //     secret: 'keyboardcat',
+  //     resave: false,
+  //     saveUninitialized: true,
+  //     cookie: { path: '/', httpOnly: true, maxAge: 30 * 600000 },
+  //     rolling: true,
+  //   })
+  // )
+
   express.use(passport.initialize())
   express.use(passport.session())
 
