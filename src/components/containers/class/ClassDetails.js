@@ -81,14 +81,14 @@ const ClassDetails = ({ className }) => {
           loop
           className={classes.video}
         >
-          <source src={charactersDescriptions[className].videoMp4} type="video/mp4" />
-          <source src={charactersDescriptions[className].videoWeb} type="video/webm" />
+          <source src={charactersDescriptions[className]?.videoMp4} type="video/mp4" />
+          <source src={charactersDescriptions[className]?.videoWeb} type="video/webm" />
         </video>
         <div className={className === 'barbarian' ? classes.contentRight : classes.content}>
           <h1 className={classes.title}>{className}</h1>
-          <p>{charactersDescriptions[className].description}</p>
+          <p>{charactersDescriptions[className]?.description}</p>
           <div className={classes.videoContainer}>
-            <YouTube videoId={charactersDescriptions[className].youTubeId} opts={opts} />
+            <YouTube videoId={charactersDescriptions[className]?.youTubeId} opts={opts} />
           </div>
         </div>
       </div>

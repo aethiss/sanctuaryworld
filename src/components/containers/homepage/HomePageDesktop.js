@@ -53,7 +53,7 @@ const HomePageDesktop = ({ battletag }) => {
 
   const renderConnect = () => (
     <>
-      <DiabloResponsiveButton text='Connect' anchorLink='/account' />
+      <DiabloResponsiveButton text='Connect' anchorLink='/api/connect/bnet' />
     </>
   )
 

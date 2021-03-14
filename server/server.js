@@ -5,9 +5,10 @@ const express = require('express')()
 const server = require('http').Server(express)
 const next = require('next')
 // const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
+// const cookieParser = require('cookie-parser')
 // const session = require('express-session')
 const passport = require('passport')
+const axios = require('axios');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -74,16 +75,12 @@ app.prepare().then(() => {
   // express.use(bodyParser.urlencoded({ extended: true }))
 
   // initialize cookie-parser to allow us access the cookies stored in the browser.
-  express.use(cookieParser())
-  express.set('trust proxy', 1) // trust first proxy
-
+  // express.use(cookieParser())
+  // express.set('trust proxy', 1) // trust first proxy
   // express.use(
   //   session({
   //     secret: 'keyboardcat',
-  //     resave: false,
-  //     saveUninitialized: true,
   //     cookie: { path: '/', httpOnly: true, maxAge: 30 * 600000 },
-  //     rolling: true,
   //   })
   // )
 
@@ -106,10 +103,45 @@ app.prepare().then(() => {
     '/api/connect/callback',
     passport.authenticate('bnet', { failureRedirect: '/error', session: false }),
     (req, res) => {
-      const days = 3 * 24 * 60 * 60 * 1000
-      const auth = req.user?.auth || false
-      res.cookie('user', JSON.stringify({ ...req.user, auth }), { maxAge: days, httpOnly: true })
-      res.redirect('/')
+      const days = 1 * 24 * 60 * 60 * 1000
+      // const auth = req.user?.auth || false
+      // res.cookie('user', JSON.stringify({ ...req.user, auth }), { maxAge: days, httpOnly: true })
+      const { user } = req;
+      const bTag = user.battletag.split('#')[1]
+      const bUser = user.battletag.split('#')[0]
+      const fullBtag = user.battletag.toLowerCase();
+      const paramsConnection = {
+        identifier: `${fullBtag}@provider.bnet`,
+        password: `${user.id}-${bTag}`
+      }
+      // console.log(paramsConnection)
+      axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/local`, { ...paramsConnection } )
+        .then(({ data }) => {
+          if (data.jwt) { res.cookie('sidToken', data.jwt, { maxAge: days, httpOnly: true }) }
+          res.redirect('/')
+        })
+        .catch((error) => {
+          // User Not Found, register it !
+          if (error.response?.status === 400) {
+            const paramRegister = {
+              email: `${fullBtag}@provider.bnet`,
+              password: `${user.id}-${bTag}`,
+              username: bUser
+            }
+            axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/local/register`, { ...paramRegister })
+              .then(({ data }) => {
+                if (data.jwt) res.cookie('sidToken', data.jwt, { maxAge: days, httpOnly: true })
+                res.redirect('/')
+              })
+              .catch((errorRegister) => {
+                console.warn('errorRegister', errorRegister)
+                console.warn('errorRegister', errorRegister.response?.statusText)
+                res.redirect('/404')
+              })
+          } else {
+            res.redirect('/503')
+          }
+        })
     }
   )
 

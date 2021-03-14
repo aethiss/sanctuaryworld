@@ -1,4 +1,4 @@
-import { callAPI, getUserId, getBattleTag } from './APIbridge'
+import { callAPI } from './APIbridge'
 
 // Reducer
 import proposalReducer from '../reducers/proposalReducer'
@@ -27,8 +27,8 @@ export const getProposals = () => {
 
 export const createProposal = ({ title, content, type }) => {
   return (dispatch, state) => {
-    const userId = getUserId(state())
-    const creator = getBattleTag(state())
+    const userId = state().user.id
+    const creator = state().user.username
     const params = {
       creator,
       title,
@@ -49,7 +49,7 @@ export const createProposal = ({ title, content, type }) => {
             ErrorModal('Missed Title or Content', 403)
             return reject({ data: 'Compile Title and Content', status: 403 })
           }
-          callAPI('proposals', 'POST', params, state)
+          callAPI('proposals', 'POST', params)
             .then(() => {
               dispatch(getProposals())
               resolve(true)
@@ -90,8 +90,8 @@ export const setProposalByType = (proposals = []) => {
 
 export const newProposalPost = ({ id, comment }) => {
   return (dispatch, state) => {
-    const userId = getUserId(state())
-    const author = getBattleTag(state())
+    const userId = state().user.id
+    const author = state().user.username
     const params = {
       author,
       comment,
@@ -101,7 +101,7 @@ export const newProposalPost = ({ id, comment }) => {
     }
     // eslint-disable-next-line no-undef
     return new Promise((resolve, reject) => {
-      callAPI('proposal-discussions', 'POST', params, state)
+      callAPI('proposal-discussions', 'POST', params)
         .then(() => {
           dispatch(getProposals())
           resolve(true)

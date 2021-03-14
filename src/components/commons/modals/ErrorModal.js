@@ -6,7 +6,7 @@ import userReducer from '../../../redux/reducers/userReducer'
 
 export const ErrorModal = (errorMsg, errorStatus, dispatch = () => false) => {
   // eslint-disable-next-line no-undef
-  if (window) {
+  if (typeof window !== "undefined") {
     Swal.fire({
       title: 'Error!',
       text: errorMsg,

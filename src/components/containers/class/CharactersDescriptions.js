@@ -5,6 +5,12 @@ export const charactersDescriptions = {
     videoWeb: 'https://d3a5h34gwy5glx.cloudfront.net/assets/media/barbarian-class-bg-loop-ultra.c7b4d9b58f8d4ac62c269910f1996901.webm',
     youTubeId: '9DFgQ81vzGg',
   },
+  rogue: {
+    description: 'The Rogue is an adaptable, agile warrior who can specialize in ranged or close quarters combat. She can best any foe with her imbued weapons, perform powerful combo attacks, and can augment her arsenal with deadly poisons and shadow magic to slay demons with impunity.',
+    videoMp4: 'https://assets.blz-contentstack.com/v3/assets/blt3e5d63cd4a9f4f3f/blt18ee5d1f9367b574/6009b4b56506885fe6215be9/rogue-class-bg-loop-ultra.mp4',
+    videoWeb: 'https://assets.blz-contentstack.com/v3/assets/blt3e5d63cd4a9f4f3f/blta8e45490c2999bb9/6009b4d20d1ff8616fdd19bb/rogue-class-bg-loop-ultra.webm',
+    youTubeId: 'rSDIzMid6Lc',
+  },
   sorcerer: {
     description: 'The Sorceress is described as a "high risk, high reward" style of hero, harnessing potent elemental magic, but being fragile. Their spells are designed around Fire, Cold, and Lightning abilities. Sorceress has a special mechanic of Crackling Energy.',
     videoMp4: 'https://d3a5h34gwy5glx.cloudfront.net/assets/media/sorcerer-class-bg-loop-ultra.91e110d785ff1eea9ff86437815bcde5.mp4',

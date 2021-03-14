@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 
-// TEST !!!
-import { discussionList } from './__tests__/discussionMocks'
+// Actions
+import { newProposalPost } from '../../../redux/handlers/proposalActions'
+
 
 // Material-Ui & Styles
 import { makeStyles } from '@material-ui/core/styles'
@@ -60,9 +62,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const DiscussionsContainerResponsive = ({ title, id, action, discussion = [] }) => {
+const DiscussionsContainerResponsive = ({ title, id, discussion = [] }) => {
   const [loading, setLoading] = useState(false)
-  // const discussions = discussionList()
+  const _dispatch = useDispatch()
   const classes = useStyles()
   const getAuthorName = (author) => author?.split("#")[0] || ''
 
@@ -84,7 +86,7 @@ const DiscussionsContainerResponsive = ({ title, id, action, discussion = [] }) 
   const handleAction = ({ comment }) => {
     if (comment !== "") {
       setLoading(true)
-      action({ id, comment })
+      _dispatch(newProposalPost({ id, comment }))
         .then(() => {
           setLoading(false)
         })

@@ -26,12 +26,14 @@ const styles = {
 const Classes = () => {
   return (
     <div style={styles.classesContainer}>
-      <video key="classes-loop-video" autoPlay loop muted width="100%">
-        <source src="https://d3a5h34gwy5glx.cloudfront.net/assets/media/classes-bg-loop-ultra.40931d6dfc85ffaca3d9010051b0d648.mp4" />
+      <video key="classes-loop-video" autoPlay loop muted width="100%"
+             poster="https://images.blz-contentstack.com/v3/assets/blt3e5d63cd4a9f4f3f/bltbfea4236e6f14849/602442e9c6713d4e7a4d454d/classes-bg-ultra.jpg?format=pjpg&auto=webp&quality=75">
+        <source src="https://assets.blz-contentstack.com/v3/assets/blt3e5d63cd4a9f4f3f/blt172e638e8c88b9aa/602442bc5e4a6c4d10dea4b4/classes-bg-loop-ultra.mp4" />
       </video>
       <div style={styles.classesSelection}>
         <ButtonGroup aria-label="outlined primary button group">
           <DiabloButton text="Barbarian" isDisabled enableOnOver anchorLink='/class/barbarian' />
+          <DiabloButton text="Rogue" isDisabled enableOnOver anchorLink='/class/rogue' />
           <DiabloButton text="Sorceress" isDisabled enableOnOver anchorLink='/class/sorcerer' />
           <DiabloButton text="Druid" isDisabled enableOnOver anchorLink='/class/druid' />
         </ButtonGroup>

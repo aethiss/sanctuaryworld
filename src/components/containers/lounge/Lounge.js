@@ -13,7 +13,7 @@ import useStyles from './LoungeStyle'
 
 const Lounge = ({ user, chatCache, oldMessages }) => {
   const roomId = 'Launge'
-  const { messages, sendMessage, setOldMessages } = useChat(roomId, user?.battletag)
+  const { messages, sendMessage, setOldMessages } = useChat(roomId, user?.username)
   // const [newMessage, setNewMessage] = React.useState("")
   const inputRef = useRef(null)
   const lastMsg = useRef(null)
@@ -43,7 +43,7 @@ const Lounge = ({ user, chatCache, oldMessages }) => {
   const handleSendMessage = () => {
     const newMessage = inputRef.current.value
     if (newMessage !== '') {
-      sendMessage({ messageBody: newMessage, user: user.battletag })
+      sendMessage({ messageBody: newMessage, user: user.username })
       inputRef.current.value = ''
     }
   }
@@ -55,7 +55,7 @@ const Lounge = ({ user, chatCache, oldMessages }) => {
     }
   }
 
-  if (!user?.battletag) {
+  if (!user?.username) {
     return (
       <DiabloContainerResponsive>
         <section className={classes.messageContainer}>
@@ -88,7 +88,7 @@ const Lounge = ({ user, chatCache, oldMessages }) => {
                   className={classes.bubble}
                   ref={messages.length - 1 === i ? lastMsg : null}
                 >
-                  <span className={classes.textNameLeft}>{readableName(message.body.user)}</span>
+                  <span className={classes.textNameLeft}>{message.body.user}</span>
                   <p className={classes.bubbleLeft}>
                     <span className={classes.bubbleText}>{message.body.messageBody}</span>
                   </p>
@@ -98,7 +98,7 @@ const Lounge = ({ user, chatCache, oldMessages }) => {
                   className={classes.bubble}
                   ref={messages.length - 1 === i ? lastMsg : null}
                 >
-                  <span className={classes.textNameRight}>{readableName(message.body.user)}</span>
+                  <span className={classes.textNameRight}>{message.body.user}</span>
                   <p className={classes.bubbleRight}>
                     <span className={classes.bubbleText}>{message.body.messageBody}</span>
                   </p>

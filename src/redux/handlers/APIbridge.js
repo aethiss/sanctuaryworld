@@ -1,13 +1,14 @@
 /* eslint-disable no-undef */
 import axios from 'axios'
 import { pathOr } from 'ramda'
+import { getCookie } from '../../libs/cookieHelper'
 
 export const API = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}/`,
   timeout: 5000,
   headers: {
     accept: 'application/json',
-    'Content-Type': 'application/json',
+    // 'Content-Type': 'application/json',
   },
 })
 
@@ -15,6 +16,17 @@ const extractErrorMsg = (error) => {
   const defaultMessage = 'Undefined error'
   return pathOr(defaultMessage, ['response', 'data', 'data', 0, 'messages', 0, 'message'], error)
 }
+
+API.interceptors.request.use(
+  (config) => {
+    // We should use only client side request, but we like defensive code !
+    const token = getCookie("token");
+    if (token) config.headers["Authorization"] = "Bearer " + token;
+    if (config.method.toLowerCase() !== "get") config.headers["Content-Type"] = "application/json";
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 API.interceptors.response.use(
   (response) => {
@@ -38,21 +50,10 @@ API.interceptors.response.use(
   },
 )
 
-export const getAuthToken = (state) => {
-  return pathOr(null, ['user', 'auth'], state)
-}
-
-export const getUserId = (state) => pathOr(false, ['user', 'id'], state)
-
-export const getBattleTag = (state) => pathOr(false, ['user', 'battletag'], state)
-
-export const callAPI = async (url, method = 'GET', params, state) => {
-  if (state) {
-    API.defaults.headers.common['Authorization'] = `Bearer ${getAuthToken(state(),)}`
-  } else {
-    delete API.defaults.headers.common['Authorization']
+export const callAPI = async (url, method = 'GET', params, token) => {
+  if (token) {
+    API.defaults.headers.common['Authorization'] = `Bearer ${token}`
   }
-
   switch (method) {
     case 'GET':
       return await API.get(url)

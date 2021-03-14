@@ -26,6 +26,7 @@ export default (App) => {
       // Get or Create the store with `undefined` as initialState
       // This allows you to set a custom default initialState
       let reduxStore = getOrCreateStore()
+      let appProps = {}
 
       // We are Server Side, if yes Hydrate the Redux-Store ?
       if (ctx?.req) {
@@ -35,9 +36,14 @@ export default (App) => {
       // Provide the store to getInitialProps of pages
       appContext.ctx.reduxStore = reduxStore
 
-      let appProps = {}
+      // Wait if other pages have initial (server) props
       if (typeof App.getInitialProps === 'function') {
         appProps = await App.getInitialProps(appContext)
+      }
+
+      // If we receive token cookie from server
+      if (ctx?.req?.cookies?.sidToken) {
+        appProps = { ...appProps, token: ctx.req.cookies.sidToken }
       }
 
       return {

@@ -1,11 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 // Reducer Actions
-import {
-  findProposalDetails,
-  newProposalPost } from '../../../redux/handlers/proposalActions'
+import { findProposalDetails } from '../../../redux/handlers/proposalActions'
 
 // Components
 import BodyContainer from '../../commons/wrapper/BodyContainerResponsive'
@@ -39,24 +37,25 @@ const styles  = {
   },
 }
 
-@connect((state) => ({
-  proposals: state.proposal,
-}), {
-  newPost: newProposalPost,
-})
-class ProposalDetails extends Component {
+// @connect((state) => ({
+//   proposals: state.proposal,
+// }), {
+//   newPost: newProposalPost,
+// })
+const ProposalDetails = ({ id }) => {
+  const proposals = useSelector(state => state.proposal)
 
-  render() {
-    const { proposals, newPost, id } = this.props
-    const proposalDetails = findProposalDetails(proposals, id)
-    if (Array.isArray(proposalDetails)) return null
-    if (!proposalDetails) {
-      return (
-        <>
-          <p>Error on proposal Request</p>
-        </>
-      )
-    }
+  // const { proposals, newPost, id } = this.props
+  const proposalDetails = findProposalDetails(proposals, id)
+  if (Array.isArray(proposalDetails)) return null
+
+  if (!proposalDetails) {
+    return (
+      <>
+        <p>Error on proposal Request</p>
+      </>
+    )
+  }
 
     return (
       <BodyContainer>
@@ -74,13 +73,11 @@ class ProposalDetails extends Component {
           <DiscussionsContainerResponsive
             title={`Proposal Discussion - ${proposalDetails.title}`}
             id={proposalDetails.id}
-            action={newPost}
             discussion={proposalDetails.proposal_discussions}
           />
         </div>
       </BodyContainer>
     )
-  }
 }
 
 ProposalDetails.propTypes = {

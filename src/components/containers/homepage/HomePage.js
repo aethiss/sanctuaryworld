@@ -8,7 +8,7 @@ import HomePageDesktop from './HomePageDesktop'
 
 @connect((state) => ({
   device: state.device,
-  battletag: state.user?.battletag,
+  battletag: state.user?.username,
 }), {})
 class HomePage extends Component {
 
