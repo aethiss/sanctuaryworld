@@ -14,7 +14,7 @@ import * as Yup from 'yup'
 import BodyContainer from '../../commons/wrapper/BodyContainerResponsive'
 import FormikFields from '../../commons/forms/FormikFields'
 import DiabloResponsiveButton from '../../commons/buttons/DiabloResponsiveButton/DiabloResponsiveButton'
-import { getUser } from '../../../redux/handlers/authActions'
+// import { getUser } from '../../../redux/handlers/authActions'
 
 
 const styles = {
@@ -38,7 +38,7 @@ const styles = {
 }
 
 @connect(() => ({}), {
-  actionLogin: getUser,
+  actionLogin: () => true,
 })
 class Login extends Component  {
 

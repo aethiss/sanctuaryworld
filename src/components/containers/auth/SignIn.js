@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 // Actions
-import { setRegisterAccount } from '../../../redux/handlers/authActions'
+// import { setRegisterAccount } from '../../../redux/handlers/authActions'
 
 // Forms
 import {Formik, Form} from 'formik'
@@ -28,7 +28,7 @@ const styles = {
 @connect((state) => ({
   battletag: state.user?.battletag,
 }), {
-  actionRegister: setRegisterAccount,
+  actionRegister: () => true,
 })
 class SignIn extends Component {
 
