@@ -85,7 +85,7 @@ const ClassDetails = ({ className }) => {
           <source src={charactersDescriptions[className]?.videoWeb} type="video/webm" />
         </video>
         <div className={className === 'barbarian' ? classes.contentRight : classes.content}>
-          <h1 className={classes.title}>{className}</h1>
+          <h1 className={classes.title}>{className.toUpperCase()}</h1>
           <p>{charactersDescriptions[className]?.description}</p>
           <div className={classes.videoContainer}>
             <YouTube videoId={charactersDescriptions[className]?.youTubeId} opts={opts} />

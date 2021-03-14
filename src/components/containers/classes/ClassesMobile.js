@@ -14,7 +14,7 @@ import Link from 'next/link'
 // Styles
 const styles = {
   divContainer: {
-    marginTop: '15%',
+    marginTop: '10%',
     textAlign: 'center',
     ...OldFenris,
   }
@@ -30,6 +30,10 @@ const characters = [
     icon: '/images/classes/sorceress/class-icon-sorcerer.png'
   },
   {
+    name: 'rogue',
+    icon: '/images/classes/rogue/class-icon-rogue.png'
+  },
+  {
     name: 'druid',
     icon: '/images/classes/druid/class-icon-druid.png'
   },
@@ -39,7 +43,7 @@ const renderClassLink = (item, k) => (
   <div key={`char-${k}`} style={styles.divContainer}>
     <Link href={`/class/${item.name}`}>
       <a>
-        {item.name}
+        {item.name.toUpperCase()}
         <Image src={item.icon} unsized />
       </a>
     </Link>
