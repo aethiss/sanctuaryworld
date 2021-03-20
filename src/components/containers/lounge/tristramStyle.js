@@ -16,11 +16,13 @@ const chatStyles = makeStyles((Theme) => ({
     display: 'flex',
     flex: 1,
     flexFlow: 'column wrap',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
     maxWidth: '867px',
     borderRadius: '5px',
     boxShadow: '0 15px 15px -5px rgba(0, 0, 0, 0.2)',
+    overflow: 'auto',
   },
   msgerHeader: {
     display: 'flex',
@@ -34,7 +36,7 @@ const chatStyles = makeStyles((Theme) => ({
     flex: '1',
     overflowY: 'auto',
     padding: '10px',
-    // backgroundColor: "#FFF"
+    maxHeight: '83vh',
   },
   msg: {
     display: 'flex',

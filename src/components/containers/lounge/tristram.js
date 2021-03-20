@@ -70,6 +70,7 @@ const Tristram = ({ user, setChatCache, oldMessages }) => {
     return (
       <div
         key={`chat-msg-${key}`}
+        ref={messages.length - 1 === key ? lastMsg : null}
         className={clsx(
           classes.msg,
           isOwner ? classes.rightMsg : classes.leftMsgMsgBubble,
@@ -97,6 +98,7 @@ const Tristram = ({ user, setChatCache, oldMessages }) => {
   const renderEventMsg = ({ key, messageBody }) => {
     return (
       <div
+        ref={messages.length - 1 === key ? lastMsg : null}
         key={`chat-msg-${key}`}
         className={clsx(classes.msg, classes.leftMsgMsgBubble)}
       >
