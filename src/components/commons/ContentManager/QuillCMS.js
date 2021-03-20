@@ -7,17 +7,16 @@ import Router from 'next/router'
 import DiabloButton from '../buttons/diabloButton/DiabloButton'
 import QuillPreview from './QuillPreview'
 
-
 // Quill Editor
 const ReactQuill = dynamic(
   async () => {
-    const { default: RQ } = await import("react-quill")
+    const { default: RQ } = await import('react-quill')
     // eslint-disable-next-line react/prop-types,react/display-name
     return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />
   },
   {
-    ssr: false
-  }
+    ssr: false,
+  },
 )
 
 // Styles
@@ -34,11 +33,11 @@ const styles = {
     backgroundColor: '#FFF',
     minHeight: '50vh',
     color: 'black',
-    width: '90%'
+    width: '90%',
   },
   quillContainer: {
     minHeight: '50vh',
-  }
+  },
 }
 
 const QuillCMS = ({ action, type, withTitle = false }) => {
@@ -68,73 +67,79 @@ const QuillCMS = ({ action, type, withTitle = false }) => {
       const position = quillRef.getSelection()
       // eslint-disable-next-line no-undef
       const url = prompt('please copy paste the image url here.')
-      if(url){
+      if (url) {
         quillRef.insertEmbed(position.index, 'image', url)
       }
     }
   }
 
   // Quill Options
-  const modules = useMemo(() => ({
-    toolbar: {
-      container: [
-        [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }],
-        // [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
-        [{ size: [] }],
-        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        ['clean'],
-        ['code-block'],
-        ['link', 'image', 'video'],
-      ],
-      handlers: {
-        'image': imageHandler
-      }
-    }
-  }), [])
+  const modules = useMemo(
+    () => ({
+      toolbar: {
+        container: [
+          [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }],
+          // [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
+          [{ size: [] }],
+          ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          ['clean'],
+          ['code-block'],
+          ['link', 'image', 'video'],
+        ],
+        handlers: {
+          image: imageHandler,
+        },
+      },
+    }),
+    [],
+  )
 
   const handlePreview = () => setPreview(!preview)
-  const hideEditor = () => preview ? 'none' : 'block'
+  const hideEditor = () => (preview ? 'none' : 'block')
 
   const handleAction = () => {
     if (type === 'post') {
       action({ comment: currentHTML })
       return
     }
-    action({ title, content: currentHTML, type })
-      .then(() => {
-        Router.push(`/proposals`)
-      })
+    action({ title, content: currentHTML, type }).then(() => {
+      Router.push(`/proposals`)
+    })
   }
 
   return (
     <>
-      {
-        withTitle &&
+      {withTitle && (
         <div style={{ ...styles.titleContainer, display: hideEditor() }}>
           <input
             style={styles.inputTitle}
             type='text'
             placeholder='Proposal Title'
             value={title}
-            onChange={(ele) => { setTitle(ele.target.value) }}
+            onChange={(ele) => {
+              setTitle(ele.target.value)
+            }}
           />
         </div>
-      }
+      )}
       <div style={{ ...styles.divContainer, display: hideEditor() }}>
         <ReactQuill
           forwardedRef={reactQuillRef}
           value={currentHTML}
           onChange={setHTML}
           theme='snow'
-          placeholder='Write a new proposal ...'
+          placeholder='Write here your content ...'
           modules={modules}
         />
       </div>
-      { preview && <QuillPreview HTML={currentHTML} title={title} /> }
+      {preview && <QuillPreview HTML={currentHTML} title={title} />}
       <div>
-        <DiabloButton action={handlePreview} text={preview ? 'Editor' : 'Preview'} />
-        { preview && <DiabloButton action={handleAction} text='Publish' /> }
+        <DiabloButton
+          action={handlePreview}
+          text={preview ? 'Editor' : 'Preview'}
+        />
+        {preview && <DiabloButton action={handleAction} text='Publish' />}
       </div>
     </>
   )

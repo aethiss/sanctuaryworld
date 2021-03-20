@@ -6,27 +6,27 @@ import { connect } from 'react-redux'
 import chatReducer from '../../src/redux/reducers/chatReducer'
 
 // Components
-import Lounge from '../../src/components/containers/lounge/Lounge'
+// import Lounge from '../../src/components/containers/lounge/Lounge'
+import Tristram from '../../src/components/containers/lounge/tristram'
 
-// const handleChatCache = (messages, dispatch) => {
-//   dispatch(chatReducer.actions.)
-// }
-
-@connect((state) => ({
-  user: state.user,
-  oldMessages: state.chat,
-}), {
-  setChatCache: chatReducer.actions.setChatCache
-})
+@connect(
+  (state) => ({
+    user: state.user,
+    oldMessages: state.chat,
+  }),
+  {
+    setChatCache: chatReducer.actions.setChatCache,
+  },
+)
 class LoungePage extends Component {
-
   render() {
     const { user, setChatCache, oldMessages } = this.props
-    return <Lounge
-      user={user}
-      chatCache={setChatCache}
-      oldMessages={oldMessages}
-    />
+    // return <Lounge
+    //   user={user}
+    //   chatCache={setChatCache}
+    //   oldMessages={oldMessages}
+    // />
+    return <Tristram {...this.props} />
   }
 }
 
