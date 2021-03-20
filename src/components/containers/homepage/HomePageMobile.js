@@ -6,12 +6,15 @@ import DiabloButton from '../../commons/buttons/diabloButton/DiabloButton'
 
 const styles = {
   container: {
-    height: '100vh',
+    height: '88vh',
     width: '100%',
     padding: '5%',
     backgroundImage: 'url("/images/background/homepage-background-mobile.jpg")',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
+    backgroundPosition: 'fixed',
     backgroundRepeat: 'no-repeat',
+    backgroundPositionX: 'center',
+    backgroundPositionY: 'center',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
@@ -24,14 +27,12 @@ const styles = {
   loginContainer: {
     display: 'flex',
     marginBottom: '80%',
-  }
+  },
 }
 
 const loginRender = (battletag) => (
   <div style={styles.loginContainer}>
-    <div>
-      Connected as {battletag}
-    </div>
+    <div>Connected as {battletag}</div>
   </div>
 )
 
@@ -44,16 +45,13 @@ const connectButton = () => (
 const HomePageMobile = ({ battletag }) => {
   return (
     <div style={styles.container}>
-      { battletag ? loginRender(battletag) : connectButton() }
+      {battletag ? loginRender(battletag) : connectButton()}
     </div>
   )
 }
 
 HomePageMobile.propTypes = {
-  battletag: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-  ])
+  battletag: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 }
 
 HomePageMobile.defaultProps = {

@@ -14,15 +14,20 @@ import { dateToString } from '../../../libs/dateHelper'
 
 // Styles
 import { OldFenris } from '../../commons/commonStyles/fontFamily'
+import { makeStyles } from '@material-ui/core/styles'
 
 // Styles
-const styles  = {
+const styles = makeStyles((theme) => ({
   proposalContainer: {
     padding: '10px',
     width: '90%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      padding: '2px',
+    },
   },
   proposalTitle: {
-    paddingTop: '65px',
+    paddingTop: '5px',
     fontSize: '22px',
     textAlign: 'center',
     ...OldFenris,
@@ -35,15 +40,11 @@ const styles  = {
   proposalContent: {
     marginTop: '25px',
   },
-}
+}))
 
-// @connect((state) => ({
-//   proposals: state.proposal,
-// }), {
-//   newPost: newProposalPost,
-// })
 const ProposalDetails = ({ id }) => {
-  const proposals = useSelector(state => state.proposal)
+  const classes = styles()
+  const proposals = useSelector((state) => state.proposal)
 
   // const { proposals, newPost, id } = this.props
   const proposalDetails = findProposalDetails(proposals, id)
@@ -57,27 +58,27 @@ const ProposalDetails = ({ id }) => {
     )
   }
 
-    return (
-      <BodyContainer>
-        <div style={styles.proposalContainer}>
-          <div style={styles.proposalTitle}>
-            {proposalDetails.title}
-          </div>
-          <div style={styles.proposalCreator}>
-            Created By {proposalDetails.creator.split('#')[0]} <br/>
-            at {dateToString(proposalDetails.creationDate)}
-          </div>
-          <div style={styles.proposalContent}>
-            <div dangerouslySetInnerHTML={{__html: proposalDetails.description}} />
-          </div>
-          <DiscussionsContainerResponsive
-            title={`Proposal Discussion - ${proposalDetails.title}`}
-            id={proposalDetails.id}
-            discussion={proposalDetails.proposal_discussions}
+  return (
+    <BodyContainer>
+      <div className={classes.proposalContainer}>
+        <div className={classes.proposalTitle}>{proposalDetails.title}</div>
+        <div className={classes.proposalCreator}>
+          Created By {proposalDetails.creator.split('#')[0]} <br />
+          at {dateToString(proposalDetails.creationDate)}
+        </div>
+        <div className={classes.proposalContent}>
+          <div
+            dangerouslySetInnerHTML={{ __html: proposalDetails.description }}
           />
         </div>
-      </BodyContainer>
-    )
+        <DiscussionsContainerResponsive
+          title={`Proposal Discussion - ${proposalDetails.title}`}
+          id={proposalDetails.id}
+          discussion={proposalDetails.proposal_discussions}
+        />
+      </div>
+    </BodyContainer>
+  )
 }
 
 ProposalDetails.propTypes = {
