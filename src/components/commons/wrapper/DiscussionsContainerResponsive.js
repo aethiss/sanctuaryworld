@@ -97,9 +97,11 @@ const DiscussionsContainerResponsive = ({ title, id, discussion = [] }) => {
   const handleAction = ({ comment }) => {
     if (comment !== '') {
       setLoading(true)
-      _dispatch(newProposalPost({ id, comment })).then(() => {
-        setLoading(false)
-      })
+      _dispatch(newProposalPost({ id, comment }))
+        .then(() => {
+          setLoading(false)
+        })
+        .catch(() => setLoading(false))
     }
   }
 

@@ -77,16 +77,25 @@ const QuillCMS = ({ action, type, withTitle = false }) => {
   const modules = useMemo(
     () => ({
       toolbar: {
-        container: [
-          [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }],
-          // [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
-          [{ size: [] }],
-          ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-          [{ list: 'ordered' }, { list: 'bullet' }],
-          ['clean'],
-          ['code-block'],
-          ['link', 'image', 'video'],
-        ],
+        container:
+          type === 'post'
+            ? [
+                [{ header: '2' }],
+                [{ size: [] }],
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                ['code-block'],
+                ['link'],
+              ]
+            : [
+                [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }],
+                // [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
+                [{ size: [] }],
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                ['clean'],
+                ['code-block'],
+                ['link', 'image', 'video'],
+              ],
         handlers: {
           image: imageHandler,
         },
@@ -99,6 +108,7 @@ const QuillCMS = ({ action, type, withTitle = false }) => {
   const hideEditor = () => (preview ? 'none' : 'block')
 
   const handleAction = () => {
+    if (!!currentHTML === false) return
     if (type === 'post') {
       action({ comment: currentHTML })
       return
@@ -134,13 +144,19 @@ const QuillCMS = ({ action, type, withTitle = false }) => {
         />
       </div>
       {preview && <QuillPreview HTML={currentHTML} title={title} />}
-      <div>
-        <DiabloButton
-          action={handlePreview}
-          text={preview ? 'Editor' : 'Preview'}
-        />
-        {preview && <DiabloButton action={handleAction} text='Publish' />}
-      </div>
+      {type === 'post' ? (
+        <div>
+          <DiabloButton action={handleAction} text='Post' />
+        </div>
+      ) : (
+        <div>
+          <DiabloButton
+            action={handlePreview}
+            text={preview ? 'Editor' : 'Preview'}
+          />
+          {preview && <DiabloButton action={handleAction} text='Publish' />}
+        </div>
+      )}
     </>
   )
 }

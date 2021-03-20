@@ -15,10 +15,14 @@ export const getProposals = () => {
     return new Promise((resolve, reject) => {
       callAPI('proposals', 'GET')
         .then(({ data }) => {
-          resolve(dispatch(proposalReducer.actions.setProposal(setProposalByType(data))))
+          resolve(
+            dispatch(
+              proposalReducer.actions.setProposal(setProposalByType(data)),
+            ),
+          )
         })
         .catch((err) => {
-          ErrorModal(err.data,  err.status, dispatch)
+          ErrorModal(err.data, err.status, dispatch)
           reject(err)
         })
     })
@@ -39,25 +43,24 @@ export const createProposal = ({ title, content, type }) => {
     }
     // eslint-disable-next-line no-undef
     return new Promise((resolve, reject) => {
-      checkProposalSchema(params)
-        .then((isValid) => {
-          if (!isValid) {
-            if (!creator) {
-              ErrorModal('Session Timeout', 403)
-              return reject({ data: 'Session Timeout', status: 403 })
-            }
-            ErrorModal('Missed Title or Content', 403)
-            return reject({ data: 'Compile Title and Content', status: 403 })
+      checkProposalSchema(params).then((isValid) => {
+        if (!isValid) {
+          if (!creator) {
+            ErrorModal('Session Timeout', 403)
+            return reject({ data: 'Session Timeout', status: 403 })
           }
-          callAPI('proposals', 'POST', params)
-            .then(() => {
-              dispatch(getProposals())
-              resolve(true)
-            })
-            .catch((err) => {
-              ErrorModal(err.data, err.status, dispatch)
-              reject(err)
-            })
+          ErrorModal('Missed Title or Content', 403)
+          return reject({ data: 'Compile Title and Content', status: 403 })
+        }
+        callAPI('proposals', 'POST', params)
+          .then(() => {
+            dispatch(getProposals())
+            resolve(true)
+          })
+          .catch((err) => {
+            ErrorModal(err.data, err.status, dispatch)
+            reject(err)
+          })
       })
     })
   }
@@ -79,7 +82,7 @@ export const setProposalByType = (proposals = []) => {
     world: [],
     pve: [],
     trading: [],
-    pvp: []
+    pvp: [],
   }
   proposals.map((val) => {
     typeProposals[val.type].push(val)
@@ -107,6 +110,7 @@ export const newProposalPost = ({ id, comment }) => {
           resolve(true)
         })
         .catch((err) => {
+          console.log('err ', err.data, err.status)
           ErrorModal(err.data, err.status, dispatch)
           reject(err)
         })
