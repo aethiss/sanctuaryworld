@@ -5,7 +5,7 @@ import userReducer from '../reducers/userReducer'
 
 // Helpers
 import { ErrorModal } from '../../components/commons/modals/ErrorModal'
-// import { setCookie } from '../../libs/cookieHelper'
+import { eraseCookie } from '../../libs/cookieHelper'
 
 // export const setRegisterAccount = (params) => {
 //   return (dispatch) => {
@@ -50,18 +50,23 @@ import { ErrorModal } from '../../components/commons/modals/ErrorModal'
 //   }
 // }
 
-export const getAuthenticatedUser = (token = "") => async (dispatch) => {
+export const getAuthenticatedUser = (token = '') => async (dispatch) => {
   await callAPI('users/me', 'GET', {}, token)
     .then(({ data }) => {
       const user = {
         id: data._id,
         username: data.username,
-        auth: token
+        auth: token,
       }
-      dispatch(userReducer.actions.setUser(user));
+      dispatch(userReducer.actions.setUser(user))
     })
     .catch((err) => {
-      console.warn(err);
-      ErrorModal(err.data);
+      console.warn(err)
+      ErrorModal(err.data)
     })
+}
+
+export const logoutUser = () => (dispatch) => {
+  dispatch(userReducer.actions.logOutUser())
+  eraseCookie()
 }

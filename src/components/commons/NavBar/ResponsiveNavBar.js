@@ -1,8 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 
 // Next
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+// Handlers
+import { logoutUser } from '../../../redux/handlers/authActions'
 
 // Material-Ui
 import { makeStyles } from '@material-ui/core/styles'
@@ -75,7 +80,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ResponsiveNavBar = ({ openMenu }) => {
+  const _dispatch = useDispatch()
   const classes = useStyles()
+  const router = useRouter()
   const [menuMoreAnchorEl, setMenuMoreAnchorEl] = React.useState(null)
 
   const isMobileMenuOpen = Boolean(menuMoreAnchorEl)
@@ -86,6 +93,16 @@ const ResponsiveNavBar = ({ openMenu }) => {
 
   const handleMenuOpen = (event) => {
     setMenuMoreAnchorEl(event.currentTarget)
+  }
+
+  const handleMyAccount = () => {
+    handleMenuClose()
+    router.push('/account')
+  }
+
+  const handleLogout = () => {
+    _dispatch(logoutUser())
+    router.push('/')
   }
 
   const menuId = 'primary-search-account-menu'
@@ -108,30 +125,34 @@ const ResponsiveNavBar = ({ openMenu }) => {
         open={isMobileMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+        <MenuItem onClick={handleMyAccount}>My account</MenuItem>
+        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
       </Menu>
     </>
   )
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar position='static' className={classes.appBar}>
         <Toolbar>
           <IconButton
-            edge="start"
+            edge='start'
             className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
+            color='inherit'
+            aria-label='open drawer'
             onClick={openMenu('left', true)}
           >
             <MenuIcon />
           </IconButton>
           <div className={classes.growCenter}>
-            <Typography className={classes.title} variant="h6" noWrap>
+            <Typography className={classes.title} variant='h6' noWrap>
               <Link href='/'>
                 <a>
-                  <img className={classes.icon} src="/images/background/logo-d4-icon.png" alt="d4 icon" />
+                  <img
+                    className={classes.icon}
+                    src='/images/background/logo-d4-icon.png'
+                    alt='d4 icon'
+                  />
                   SanctuaryWorld
                 </a>
               </Link>
@@ -149,23 +170,23 @@ const ResponsiveNavBar = ({ openMenu }) => {
             {/*  </Badge>*/}
             {/*</IconButton>*/}
             <IconButton
-              edge="end"
-              aria-label="account of current user"
+              edge='end'
+              aria-label='account of current user'
               aria-controls={menuId}
-              aria-haspopup="true"
+              aria-haspopup='true'
               onClick={handleMenuOpen}
-              color="inherit"
+              color='inherit'
             >
               <AccountCircle />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
-              aria-label="show more"
+              aria-label='show more'
               aria-controls={mobileMenuId}
-              aria-haspopup="true"
+              aria-haspopup='true'
               onClick={handleMenuOpen}
-              color="inherit"
+              color='inherit'
             >
               <MoreIcon />
             </IconButton>

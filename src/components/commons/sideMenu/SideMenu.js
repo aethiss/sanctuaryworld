@@ -26,18 +26,18 @@ import FireplaceIcon from '@material-ui/icons/Fireplace'
 // Styles
 const styles = {
   listItemIcon: {
-    color: '#f8e9d4'
+    color: '#f8e9d4',
   },
   listItem: {
     fontWeight: 200,
     fontFamily: 'Old Fenris,Volkhov,Vollkorn,Times New Roman,serif',
     textTransform: 'uppercase',
-    color: '#f8e9d4'
+    color: '#f8e9d4',
   },
   iconClose: {
     color: '#f8e9d4',
     float: 'right',
-  }
+  },
 }
 
 const MenuIcon = (iconName) => {
@@ -72,7 +72,7 @@ const primaryMenu = [
 const secondaryMenu = [
   { name: 'Account', link: '/account', icon: () => MenuIcon('Account') },
   { name: 'Forum', link: '/test', icon: () => MenuIcon('Forum') },
-  { name: 'Log Out', link: '/test', icon: () => MenuIcon('logout') },
+  // { name: 'Log Out', link: '/test', icon: () => MenuIcon('logout') },
 ]
 
 const SideMenu = ({ onPageChange }) => {

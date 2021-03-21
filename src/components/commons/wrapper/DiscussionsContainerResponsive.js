@@ -53,10 +53,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '12px',
   },
   postContent: {
-    paddingTop: '15px',
+    paddingTop: '10px',
     textAlign: 'justify',
     textJustify: 'inter-word',
-    lineHeight: '1.6',
+    // lineHeight: '1.6',
+    fontSize: '14px',
   },
   answerContainer: {
     margin: 'auto',

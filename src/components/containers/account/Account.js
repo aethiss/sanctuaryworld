@@ -17,55 +17,43 @@ const styles = {
   },
   link: {
     textDecoration: 'underline',
-  }
+  },
 }
 
 const AccountPage = ({ user }) => {
-
-  const notAuthenticatedUser = () => (
-    <div>
-      <p>Sync your Blizzard Account with SanctuaryWorld !</p>
-      <span>
-        <ButtonDescription anchorLink='/login' text='Sign-In' />
-      </span>
-    </div>
-)
-
   const blizzardConnect = () => {
     return (
-      <div>
+      <div style={styles.container}>
         <p>Secure Connect with Blizzard Account</p>
-        <DiabloResponsiveButton text='Connect' anchorLink='/api/connect/bnet' />
-        <p>Or <Link href='/login'><a style={styles.link}>Login</a></Link> with Sanctuary Account</p>
-      </div>
-    )
-  }
-
-  const sanctuaryAuth = (user) => {
-    if (!user.battletag) return null
-    return (
-      <div>
-        { user.auth ? <p>User Authenticated</p> : notAuthenticatedUser() }
+        <p>
+          This is a secure connection using oAuth2 (
+          <a href='https://oauth.net/2/' target='_blank'>
+            <u>read more</u>
+          </a>
+          )
+        </p>
+        <DiabloResponsiveButton
+          text='BATTLE.NET'
+          anchorLink='/api/connect/bnet'
+        />
       </div>
     )
   }
 
   return (
-    <BodyContainer>
+    <BodyContainer background='/images/background/act1-bg.jpg'>
       <div style={styles.container}>
         <Image
-          src="/images/background/d4_logo.png"
-          alt="diablo 4 logo"
+          src='/images/background/d4_logo.png'
+          alt='diablo 4 logo'
           width={370}
           height={200}
         />
-        { user.battletag ?
-          <span>
-            <p>Connected as {user.battletag} </p>
-            { sanctuaryAuth(user) }
-          </span> :
-          <span>{ blizzardConnect() } <br/>{sanctuaryAuth(user)}</span>
-        }
+        {user.battletag ? (
+          <p>Connected as {user.battletag} </p>
+        ) : (
+          blizzardConnect()
+        )}
       </div>
     </BodyContainer>
   )
