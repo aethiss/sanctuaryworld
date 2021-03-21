@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 // Actions
@@ -9,6 +9,7 @@ import { newProposalPost } from '../../../redux/handlers/proposalActions'
 import { makeStyles } from '@material-ui/core/styles'
 import { OldFenris } from '../commonStyles/fontFamily'
 import QuillCMS from '../ContentManager/QuillCMS'
+import DiabloResponsiveButton from '../buttons/DiabloResponsiveButton/DiabloResponsiveButton'
 
 const useStyles = makeStyles((theme) => ({
   discussionsContainer: {
@@ -68,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DiscussionsContainerResponsive = ({ title, id, discussion = [] }) => {
   const [loading, setLoading] = useState(false)
+  const user = useSelector((state) => state.user)
   const _dispatch = useDispatch()
   const classes = useStyles()
   const getAuthorName = (author) => author?.split('#')[0] || ''
@@ -114,7 +116,11 @@ const DiscussionsContainerResponsive = ({ title, id, discussion = [] }) => {
         {renderContent(discussion)}
       </div>
       <div className={classes.answerContainer}>
-        <QuillCMS type='post' action={handleAction} />
+        {user?.id ? (
+          <QuillCMS type='post' action={handleAction} />
+        ) : (
+          <DiabloResponsiveButton text='Connect' anchorLink='/account' />
+        )}
       </div>
     </div>
   )
