@@ -21,6 +21,9 @@ const useStyles = (minWidth) =>
       '&:hover': {
         cursor: 'pointer',
       },
+      '&:focus': {
+        outline: 'none !important',
+      },
     },
     buttonMid: {
       background: 'url("/images/buttons/button-game-sprite.png") repeat-x 0 0',

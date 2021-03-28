@@ -23,15 +23,18 @@ const proposalTheme = {
     justifyContent: 'flex-end',
     padding: '30px',
     marginTop: '10px',
-  }
+  },
 }
 
-@connect((state) => ({
-  battletag: state.user?.battletag,
-  proposalsList: state.proposal,
-}), {
-  newProposal: createProposal,
-})
+@connect(
+  (state) => ({
+    battletag: state.user?.battletag,
+    proposalsList: state.proposal,
+  }),
+  {
+    newProposal: createProposal,
+  },
+)
 class Proposal extends Component {
   constructor(props) {
     super(props)
@@ -55,15 +58,9 @@ class Proposal extends Component {
             action={this.cmsToggle}
           />
         </div>
-        {
-          newCms &&
-          <QuillCMS
-            withTitle={true}
-            action={newProposal}
-            type={proposal}
-          />
-        }
-        <ProposalList proposals={proposalsList[proposal]} />
+        {newCms && (
+          <QuillCMS withTitle={true} action={newProposal} type={proposal} />
+        )}
       </BodyContainer>
     )
   }

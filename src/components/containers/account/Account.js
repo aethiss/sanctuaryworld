@@ -45,7 +45,7 @@ const AccountPage = ({ user }) => {
       <div style={styles.container}>
         <Image
           src='/images/background/d4_logo.png'
-          alt='diablo 4 logo'
+          alt='battle.net logo'
           width={370}
           height={200}
         />

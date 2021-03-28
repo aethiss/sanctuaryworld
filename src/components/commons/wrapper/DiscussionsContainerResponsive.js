@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '10px',
     textAlign: 'justify',
     textJustify: 'inter-word',
-    // lineHeight: '1.6',
     fontSize: '14px',
   },
   answerContainer: {
@@ -65,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    [theme.breakpoints.up('sm')]: {
+      width: '80%',
+    },
   },
 }))
 

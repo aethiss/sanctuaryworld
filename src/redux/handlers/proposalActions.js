@@ -1,4 +1,5 @@
 import { callAPI } from './APIbridge'
+import { omit } from 'ramda'
 
 // Reducer
 import proposalReducer from '../reducers/proposalReducer'
@@ -15,11 +16,14 @@ export const getProposals = () => {
     return new Promise((resolve, reject) => {
       callAPI('proposals', 'GET')
         .then(({ data }) => {
-          resolve(
-            dispatch(
-              proposalReducer.actions.setProposal(setProposalByType(data)),
-            ),
-          )
+          if (data && Array.isArray(data)) {
+            const parsedProposal = data.map((val) => {
+              return omit(['user'], val)
+            })
+            resolve(
+              dispatch(proposalReducer.actions.setProposal(parsedProposal)),
+            )
+          }
         })
         .catch((err) => {
           ErrorModal(err.data, err.status, dispatch)
@@ -29,7 +33,7 @@ export const getProposals = () => {
   }
 }
 
-export const createProposal = ({ title, content, type }) => {
+export const createProposal = ({ title, content, type, language }) => {
   return (dispatch, state) => {
     const userId = state().user.id
     const creator = state().user.username
@@ -38,6 +42,7 @@ export const createProposal = ({ title, content, type }) => {
       title,
       description: content,
       type,
+      language,
       creationDate: Date.now(),
       user: userId,
     }
@@ -67,14 +72,15 @@ export const createProposal = ({ title, content, type }) => {
 }
 
 export const findProposalDetails = (proposals = [], id) => {
-  let details = []
-  Object.keys(proposals).map((val) => {
-    proposals[val].map((item) => {
-      if (item.id === id) details.push(item)
-    })
-  })
-
-  return details[0]
+  // let details = []
+  // Object.keys(proposals).map((val) => {
+  //   proposals[val].map((item) => {
+  //     if (item.id === id) details.push(item)
+  //   })
+  // })
+  //
+  // return details[0]
+  return proposals.find((val) => val.id === id)
 }
 
 export const setProposalByType = (proposals = []) => {

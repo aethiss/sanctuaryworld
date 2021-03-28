@@ -22,7 +22,7 @@ const ReactQuill = dynamic(
 // Styles
 const styles = {
   titleContainer: {
-    margin: '10px',
+    padding: '10px',
     width: '90%',
   },
   inputTitle: {
@@ -33,7 +33,7 @@ const styles = {
     backgroundColor: '#FFF',
     minHeight: '50vh',
     color: 'black',
-    width: '90%',
+    width: '100%',
   },
   quillContainer: {
     minHeight: '50vh',
@@ -113,9 +113,10 @@ const QuillCMS = ({ action, type, withTitle = false }) => {
       action({ comment: currentHTML })
       return
     }
-    action({ title, content: currentHTML, type }).then(() => {
-      Router.push(`/proposals`)
-    })
+    action({ title, content: currentHTML, type })
+    // action({ title, content: currentHTML, type }).then(() => {
+    //   Router.push(`/proposals`)
+    // })
   }
 
   return (

@@ -7,15 +7,17 @@ import { makeStyles } from '@material-ui/core/styles'
 // Styles
 const previewTheme = makeStyles(() => ({
   previewContainer: {
-    width: '90%',
+    width: '100%',
     border: '2px solid #283737',
     boxShadow: '0px 0px 10px 3px #283737',
     padding: '3px',
+    marginTop: '15px',
+    // marginBottom: '25px',
   },
   titleContainer: {
     width: '100%',
     textAlign: 'center',
-    "& > h3": {
+    '& > h3': {
       padding: '2px',
       marginTop: '2px',
     },
@@ -24,14 +26,14 @@ const previewTheme = makeStyles(() => ({
     width: '100%',
     display: 'flex',
     marginTop: '10px',
-    "& img": {
+    '& img': {
       maxWidth: '100%',
     },
-    "& p": {
+    '& p': {
       padding: '1px',
       margin: '1px',
     },
-  }
+  },
 }))
 
 const QuillPreview = ({ HTML, title }) => {
@@ -39,14 +41,13 @@ const QuillPreview = ({ HTML, title }) => {
 
   return (
     <div className={classes.previewContainer}>
-      {
-        title &&
+      {title && (
         <div className={classes.titleContainer}>
           <h3>{title}</h3>
         </div>
-      }
+      )}
       <div className={classes.contentContainer}>
-        <div dangerouslySetInnerHTML={{__html: HTML}} />
+        <div dangerouslySetInnerHTML={{ __html: HTML }} />
       </div>
     </div>
   )

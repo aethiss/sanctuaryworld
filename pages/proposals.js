@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 // Components
-import Proposals from '../src/components/containers/proposal/Proposals'
+// import Proposals from '../src/components/containers/proposal/Proposals'
+import ProposalList from '../src/components/containers/proposal/ProposalList'
 
 // Actions/Handlers
 import { getProposals } from '../src/redux/handlers/proposalActions'
@@ -10,7 +11,7 @@ import { getProposals } from '../src/redux/handlers/proposalActions'
 class ProposalsPage extends Component {
   render() {
     const { proposals } = this.props
-    return <Proposals proposals={proposals} />
+    return <ProposalList proposals={proposals} />
   }
 }
 
@@ -22,12 +23,12 @@ ProposalsPage.getInitialProps = async (ctx) => {
 
   return {
     // proposals: reduxStore.getState().proposals
-    proposals: proposals?.payload || []
+    proposals: proposals?.payload || [],
   }
 }
 
 ProposalsPage.propTypes = {
-  proposals: PropTypes.object,
+  proposals: PropTypes.array,
 }
 
 export default ProposalsPage

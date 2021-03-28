@@ -7,7 +7,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
-          {/*<link href="/public/fonts/oldfenris.woff2" rel="stylesheet" type="text/css"/>*/}
+          <link href='fonts/oldfenris.woff2' rel='stylesheet' type='text/css' />
         </Head>
         <body>
           <Main />

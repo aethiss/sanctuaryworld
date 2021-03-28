@@ -31,6 +31,9 @@ const styles = makeStyles((theme) => ({
     fontSize: '22px',
     textAlign: 'center',
     ...OldFenris,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '18px',
+    },
   },
   proposalCreator: {
     textAlign: 'right',
@@ -39,6 +42,7 @@ const styles = makeStyles((theme) => ({
   },
   proposalContent: {
     marginTop: '25px',
+    marginBottom: '20px',
   },
 }))
 

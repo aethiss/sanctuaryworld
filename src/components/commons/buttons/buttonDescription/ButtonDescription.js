@@ -15,12 +15,14 @@ const useStyles = makeStyles(() => ({
     height: '133px',
     width: '280px',
     border: 'none',
-    outline: 'none',
     position: 'relative',
     cursor: 'pointer',
     '&:hover': {
       backgroundPosition: '0 -132px',
-    }
+    },
+    '&:focus': {
+      outline: 'none !important',
+    },
   },
   buttonText: {
     ...OldFenris,
@@ -30,30 +32,27 @@ const useStyles = makeStyles(() => ({
     width: '100px',
     marginLeft: '-31px',
     marginTop: '-10px',
-  }
+  },
 }))
 
 const ButtonDescription = ({ text, anchorLink, action }) => {
   const classes = useStyles()
 
   const renderButton = () => (
-    <button
-      className={classes.button}
-      onClick={action}
-    >
+    <button className={classes.button} onClick={action}>
       <span className={classes.buttonText}>{text}</span>
     </button>
   )
 
   return (
     <>
-      { anchorLink ? (
+      {anchorLink ? (
         <Link href={anchorLink}>
-          <a>
-            {renderButton()}
-          </a>
+          <a>{renderButton()}</a>
         </Link>
-      ) : renderButton() }
+      ) : (
+        renderButton()
+      )}
     </>
   )
 }

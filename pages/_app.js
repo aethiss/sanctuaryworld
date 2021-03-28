@@ -21,7 +21,8 @@ class MyApp extends App {
     return (
       <Provider store={reduxStore}>
         <Head>
-          {/*<meta name='viewport' content='viewport-fit=cover' />*/}
+          <title>SanctuaryWorld Diablo 4 Player Comunity</title>
+          <link rel='icon' href='/d4favicon.png' />
           <meta
             name='viewport'
             content='width=device-width, initial-scale=1, maximum-scale=1'

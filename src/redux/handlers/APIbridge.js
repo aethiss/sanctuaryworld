@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import axios from 'axios'
 import { pathOr } from 'ramda'
-import { getCookie } from '../../libs/cookieHelper'
+import { getCookie, delete_cookie } from '../../libs/cookieHelper'
 
 export const API = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}/`,
@@ -14,19 +14,24 @@ export const API = axios.create({
 
 const extractErrorMsg = (error) => {
   const defaultMessage = 'Undefined error'
-  return pathOr(defaultMessage, ['response', 'data', 'data', 0, 'messages', 0, 'message'], error)
+  return pathOr(
+    defaultMessage,
+    ['response', 'data', 'data', 0, 'messages', 0, 'message'],
+    error,
+  )
 }
 
 API.interceptors.request.use(
   (config) => {
     // We should use only client side request, but we like defensive code !
-    const token = getCookie("token");
-    if (token) config.headers["Authorization"] = "Bearer " + token;
-    if (config.method.toLowerCase() !== "get") config.headers["Content-Type"] = "application/json";
-    return config;
+    const token = getCookie('token')
+    if (token) config.headers['Authorization'] = 'Bearer ' + token
+    if (config.method.toLowerCase() !== 'get')
+      config.headers['Content-Type'] = 'application/json'
+    return config
   },
-  (error) => Promise.reject(error)
-);
+  (error) => Promise.reject(error),
+)
 
 API.interceptors.response.use(
   (response) => {
@@ -36,17 +41,18 @@ API.interceptors.response.use(
     // console.log('interceptor Error', error.response.data)
     if (error.response && error.response.status >= 400) {
       if (error.response.status === 401) {
-        throw ({
-          data: "Session Expired, please Login Again",
+        if (typeof window != 'undefined') delete_cookie('token')
+        throw {
+          data: 'Session Expired, please Login Again',
           status: 401,
-        })
+        }
       }
-      throw ({
+      throw {
         data: extractErrorMsg(error),
         status: error.response.status || 501,
-      })
+      }
     }
-    throw (error)
+    throw error
   },
 )
 
